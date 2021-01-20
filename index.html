@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <main class="form-signin">
+    <main class="form" id="testForm">
         <form action="" class="px-3 py-4">
             <div class="mb-3">
                 <label for="emailInput" class="form-label text-uppercase">Email Address</label>
@@ -48,8 +48,38 @@
     <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-analytics.js"></script>
+    <script>
+        //initialize the firebase app
+        var firebaseConfig = {
+            apiKey: "AIzaSyCPIvgDaRe09zqtNC5e-c3mHQVsjXwG_24",
+            authDomain: "login-authentication-dfaaa.firebaseapp.com",
+            projectId: "login-authentication-dfaaa",
+            storageBucket: "login-authentication-dfaaa.appspot.com",
+            messagingSenderId: "449318353551",
+            appId: "1:449318353551:web:bb0f7422cefe7407ec0efa",
+            measurementId: "G-20HPQDZ6SL"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+
+        //create firebase and database references
+        var Auth = firebase.auth();
+        var db = firebase.firestore();
+
+        // const firebaseConfig = {
+        //     apiKey: "AIzaSyCbaWXYRFO-uHlB4AMACf0gDnZ8StPJofY",
+        //     authDomain: "quizpay-live-trivia.firebaseapp.com",
+        //     databaseURL: "https://quizpay-live-trivia.firebaseio.com",
+        //     projectId: "quizpay-live-trivia",
+        //     storageBucket: "quizpay-live-trivia.appspot.com",
+        //     messagingSenderId: "293430420528",
+        //     appId: "1:293430420528:web:01c8715e8a4081b846b9f5"
+        // };
+    </script>
+
     <!-- CUSTOM JS SCRIPT -->
-    <script src="script.js"></script>
+    <script src="auth.js"></script>
 </body>
 
 </html>
