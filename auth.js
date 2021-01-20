@@ -3,6 +3,26 @@ const printError = (elemId, hintMsg) => {
     return document.getElementById(elemId).innerHTML = hintMsg;
 }
 
+// Listen for auth status changes
+auth.onAuthStateChanged(user => {
+    if (user) {
+        console.log("User sign-in with uid:", JSON.parse(JSON.stringify(user)));
+        // var userToken = user.getIdToken();
+        const Http = new XMLHttpRequest();
+        const url = 'https://quizpay.herokuapp.com/test';
+        Http.open("GET", url);
+        Http.send();
+
+        Http.onreadystatechange = (e) => {
+            if (Http.readyState == Http.DONE) {
+                console.log(e.currentTarget.responseText);
+            }
+        }
+    } else {
+        console.log('User logged out');
+    }
+});
+
 // Sign-Up
 const signUp = (e) => {
     e.preventDefault();
@@ -12,13 +32,13 @@ const signUp = (e) => {
         password: document.getElementById('passwordInput').value,
     }
     if (userData.email != '' && userData.password != '') {
-        //create the user
-        firebase.auth().createUserWithEmailAndPassword(userData.email, userData.password)
+        //user sign-up
+        auth.createUserWithEmailAndPassword(userData.email, userData.password)
             .then((user) => {
                 console.log(user);
                 if (user != null) {
                     var user = firebase.auth().currentUser;
-                    console.log("Successfully created user account with uid:", JSON.parse(JSON.stringify(user)));
+                    console.log("User sign-up with uid:", JSON.parse(JSON.stringify(user.uid)));
                 }
             })
             .catch((error) => {
@@ -73,12 +93,12 @@ const signIn = (e) => {
         password: document.getElementById('passwordInput').value,
     }
     if (userData.email != '' && userData.password != '') {
-        //create the user
+        //user sign-in
         firebase.auth().signInWithEmailAndPassword(userData.email, userData.password)
             .then((user) => {
                 if (user != null) {
                     var user = firebase.auth().currentUser;
-                    console.log("Signed-in successfully with uid:", user.uid);
+                    console.log("User sign-in with uid:", JSON.parse(JSON.stringify(user.uid)));
                 }
             })
             .catch((error) => {
@@ -128,9 +148,16 @@ const signIn = (e) => {
         }
     }
 };
+
+// Log out
+const logOut = (e) => {
+    e.preventDefault();
+    auth.signOut();
+};
 // Initializing event functions
 document.getElementById('formSignUpBtn').addEventListener('click', signUp);
 document.getElementById('formSignInBtn').addEventListener('click', signIn);
+document.getElementById('formLogOutBtn').addEventListener('click', logOut);
 
 // toggle password visibility
 const togglePassword = () => {
