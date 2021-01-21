@@ -6,6 +6,7 @@ const printError = (elemId, hintMsg) => {
 // Listen for auth status changes
 auth.onAuthStateChanged(user => {
     if (user) {
+        window.location = 'login-page-content.html';
         console.log("User sign-in with uid:", JSON.parse(JSON.stringify(user)));
         // var userToken = user.getIdToken();
         const Http = new XMLHttpRequest();
@@ -149,19 +150,12 @@ const signIn = (e) => {
     }
 };
 
-// Log out
-const logOut = (e) => {
-    e.preventDefault();
-    auth.signOut();
-};
 // Initializing event functions
 document.getElementById('formSignUpBtn').addEventListener('click', signUp);
 document.getElementById('formSignInBtn').addEventListener('click', signIn);
-document.getElementById('formLogOutBtn').addEventListener('click', logOut);
 
 // toggle password visibility
 const togglePassword = () => {
     var passwordInput = document.getElementById('passwordInput');
     (passwordInput.type === "password") ? passwordInput.type = "text" : passwordInput.type = "password";
 }
-
