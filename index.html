@@ -5,15 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>project | 101</title>
-    <!-- BOOTSTRAP CDN -->
+
+    <!-- MATERIAL LITE CDN -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.purple-deep_purple.min.css" />
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <!-- BOOTSTRAP CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <!-- FONT AWESOME CDN -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+        integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
     <!-- CUSTOM CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <main class="form" id="testForm">
+    <!-- <main class="form" id="testForm">
         <form action="" class="px-3 py-4">
             <div class="mb-3">
                 <label for="emailInput" class="form-label text-uppercase">Email Address</label>
@@ -33,17 +42,50 @@
                     up</button>
                 <button class="col-4 btn btn-success text-uppercase fs-6 p-2" id="formSignInBtn" type="submit">Sign
                     in</button>
-                <!-- <button class="col-4 btn btn-danger text-uppercase fs-6 p-2" id="formLogOutBtn" type="submit">Log
-                    out</button> -->
             </div>
         </form>
+    </main> -->
+    <main>
+        <!-- Accent-colored raised button with ripple -->
+        <button
+            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent dialog-button">
+            Login
+        </button>
+        <dialog id="dialog" class="mdl-dialog">
+            <h5 class="mdl-dialog__title dialog-title text-center pt-4 pb-5">Login</h5>
+            <div class="d-flex align-items-center justify-content-center px-5">
+                <a href="#" class="mdl-button mdl-js-button mdl-button--fab" id="googleSignIn">
+                    <i class="fab fa-google material-icons" style="color: #DB4437;"></i>
+                </a>
+                </a>
+                <a href="#" class="mdl-button mdl-js-button mdl-button--fab">
+                    <i class="fab fa-facebook-f material-icons" style="color: #4267B2;"></i>
+                </a>
+                <a href="#" class="mdl-button mdl-js-button mdl-button--fab">
+                    <i class="fas fa-envelope material-icons" style="color: #000000;"></i>
+                </a>
+            </div>
+
+            <div class="mdl-dialog__content ps-5">
+                <form action="#" class="">
+                    <div class="mdl-textfield mdl-js-textfield outline mdl-textfield--floating-label">
+                        <i class="material-icons mdl-textfield__label__icon fas fa-phone-alt"></i>
+                        <input class="mdl-textfield__input " type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample2">
+                        <label class="mdl-textfield__label" for="sample2">Enter Phone number</label>
+                        <span class="mdl-textfield__error">Input is not a number!</span>
+                    </div>
+                </form>
+
+            </div>
+            <a
+                class="mdl-button mdl-js-button mdl-button--raised mdl-textfield mdl-js-textfield mdl-js-ripple-effect mdl-button--accent otp-btn text-uppercase">
+                Send Otp
+            </a>
+        </dialog>
     </main>
-    <!-- BOOTSTRAP SCRIPTS -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
-        integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js"
-        integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj"
+    <!-- BOOTSTRAP SCRIPT -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
         crossorigin="anonymous"></script>
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-app.js"></script>
@@ -82,7 +124,8 @@
     </script>
 
     <!-- CUSTOM JS SCRIPT -->
-    <script src="auth.js"></script>
+    <!-- <script src="auth.js"></script> -->
+    <script src="app.js"></script>
 </body>
 
 </html>

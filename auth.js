@@ -30,26 +30,6 @@ auth.onAuthStateChanged(user => {
 
         // Send request
         request.send();
-
-
-
-        // let h = new Headers();
-        // h.append('Authentication', `Bearer ${userToken}`);
-
-        // let req = new Request(url, {
-        //     method: 'GET',
-        //     mode: 'cors',
-        //     headers: h
-        // });
-        // fetch(req)
-        //     .then(resp => resp.json())
-        //     .then(data => {
-        //         console.log(data[0])
-        //     })
-        //     .catch(error => {
-        //         console.log(error.message)
-        //     });
-
     } else {
         console.log('User logged out');
     }
@@ -182,12 +162,12 @@ const signIn = (e) => {
 };
 
 // Log out
-const logOut = (e) => {
-    e.preventDefault();
-    auth.signOut();
-    // window.location = 'index.html';
-};
-document.getElementById('formLogOutBtn').addEventListener('click', logOut);
+// const logOut = (e) => {
+//     e.preventDefault();
+//     auth.signOut();
+// window.location = 'index.html';
+// };
+// document.getElementById('formLogOutBtn').addEventListener('click', logOut);
 
 // Initializing event functions
 document.getElementById('formSignUpBtn').addEventListener('click', signUp);
