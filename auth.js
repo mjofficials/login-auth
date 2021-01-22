@@ -7,18 +7,49 @@ const printError = (elemId, hintMsg) => {
 auth.onAuthStateChanged(user => {
     if (user) {
         window.location = 'login-page-content.html';
-        console.log("User sign-in with uid:", JSON.parse(JSON.stringify(user)));
-        // var userToken = user.getIdToken();
-        const Http = new XMLHttpRequest();
-        const url = 'https://quizpay.herokuapp.com/test';
-        Http.open("GET", url);
-        Http.send();
+        var usrObj = JSON.parse(JSON.stringify(user));
+        console.log("User sign-in with uid:", usrObj);
+        var userToken = usrObj.stsTokenManager.accessToken;
+        console.log(userToken);
 
-        Http.onreadystatechange = (e) => {
-            if (Http.readyState == Http.DONE) {
-                console.log(e.currentTarget.responseText);
+        // Create a request variable and assign a new XMLHttpRequest object to it.
+        const request = new XMLHttpRequest();
+        let url = "http://quizpay.herokuapp.com/header";
+        // Open a new connection, using the GET request on the URL endpoint
+        request.open("GET", url);
+        request.setRequestHeader('Authorization', 'Bearer ' + userToken);
+        request.setRequestHeader('Content-type', 'application/json');
+        request.onreadystatechange = (e) => {
+            if (request.readyState == request.DONE) {
+                // console.log(e.currentTarget.responseText);
+                console.log("check", request.responseText);
             }
+            // Begin accessing JSON data here
+
         }
+
+        // Send request
+        request.send();
+
+
+
+        // let h = new Headers();
+        // h.append('Authentication', `Bearer ${userToken}`);
+
+        // let req = new Request(url, {
+        //     method: 'GET',
+        //     mode: 'cors',
+        //     headers: h
+        // });
+        // fetch(req)
+        //     .then(resp => resp.json())
+        //     .then(data => {
+        //         console.log(data[0])
+        //     })
+        //     .catch(error => {
+        //         console.log(error.message)
+        //     });
+
     } else {
         console.log('User logged out');
     }
@@ -149,6 +180,14 @@ const signIn = (e) => {
         }
     }
 };
+
+// Log out
+const logOut = (e) => {
+    e.preventDefault();
+    auth.signOut();
+    // window.location = 'index.html';
+};
+document.getElementById('formLogOutBtn').addEventListener('click', logOut);
 
 // Initializing event functions
 document.getElementById('formSignUpBtn').addEventListener('click', signUp);
