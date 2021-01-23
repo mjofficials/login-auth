@@ -22,65 +22,86 @@
 </head>
 
 <body>
-    <!-- <main class="form" id="testForm">
-        <form action="" class="px-3 py-4">
-            <div class="mb-3">
-                <label for="emailInput" class="form-label text-uppercase">Email Address</label>
-                <input type="email" class="form-control" id="emailInput" placeholder="Email">
-                <div class="text-danger" id="emailErr"></div>
-            </div>
-            <div class="mb-3">
-                <label for="passwordInput" class="form-label text-uppercase">Password</label>
-                <input type="password" class="form-control" id="passwordInput" placeholder="Password">
-                <div class="text-danger" id="passwordErr"></div>
-            </div>
-            <div class="mb-3 d-flex flex-row align-items-center justify-content-start">
-                <input type="checkbox" onclick="togglePassword()"> <small class="px-2">Show password</small>
-            </div>
-            <div class="row d-flex flex-row align-items-center justify-content-evenly">
-                <button class="col-4 btn btn-primary text-uppercase fs-6 p-2" id="formSignUpBtn" type="submit">Sign
-                    up</button>
-                <button class="col-4 btn btn-success text-uppercase fs-6 p-2" id="formSignInBtn" type="submit">Sign
-                    in</button>
-            </div>
-        </form>
-    </main> -->
     <main>
-        <!-- Accent-colored raised button with ripple -->
+        <h1 class="text-center login-brand-title">QuizPe</h1>
         <button
             class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent dialog-button">
             Login
         </button>
         <dialog id="dialog" class="mdl-dialog">
-            <h5 class="mdl-dialog__title dialog-title text-center pt-4 pb-5">Login</h5>
+            <h5 class="mdl-dialog__title dialog-title text-center pt-4 pb-4">Login</h5>
             <div class="d-flex align-items-center justify-content-center px-5">
                 <a href="#" class="mdl-button mdl-js-button mdl-button--fab" id="googleSignIn">
                     <i class="fab fa-google material-icons" style="color: #DB4437;"></i>
                 </a>
                 </a>
-                <a href="#" class="mdl-button mdl-js-button mdl-button--fab">
+                <a href="#" class="mdl-button mdl-js-button mdl-button--fab" id="facebookSignIn">
                     <i class="fab fa-facebook-f material-icons" style="color: #4267B2;"></i>
                 </a>
-                <a href="#" class="mdl-button mdl-js-button mdl-button--fab">
+                <a href="#" class="mdl-button mdl-js-button mdl-button--fab" id="emailSignIn">
                     <i class="fas fa-envelope material-icons" style="color: #000000;"></i>
                 </a>
             </div>
-
-            <div class="mdl-dialog__content ps-5">
+            <!-- mobile number dialog box -->
+            <div class="mdl-dialog__content px-5 pt-5" id="mobileContentBox">
                 <form action="#" class="">
                     <div class="mdl-textfield mdl-js-textfield outline mdl-textfield--floating-label">
                         <i class="material-icons mdl-textfield__label__icon fas fa-phone-alt"></i>
-                        <input class="mdl-textfield__input " type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample2">
+                        <input class="mdl-textfield__input " id="phoneNumberInput">
                         <label class="mdl-textfield__label" for="sample2">Enter Phone number</label>
-                        <span class="mdl-textfield__error">Input is not a number!</span>
+                        <div class="text-danger fs-6 position-absolute" id="mobileOtpErr"></div>
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield outline mdl-textfield--floating-label">
+                        <a href="#" id="requestBtn"
+                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent request-btn"
+                            type="button" onclick="">
+                            Send OTP
+                        </a>
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield outline mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input " id="verificationCodeInput">
+                        <label class="mdl-textfield__label" for="sample2">Verfication code</label>
+                        <div class="text-danger fs-6 position-absolute" id="verficationCodeErr"></div>
+                        <!-- Container for reCaptcha -->
+                        <div id="recaptchaContainer"></div>
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield outline mdl-textfield--floating-label">
+                        <a href="#" id="confirm-code"
+                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent code-btn"
+                            onclick="">
+                            Enter Code
+                        </a>
                     </div>
                 </form>
-
             </div>
-            <a
-                class="mdl-button mdl-js-button mdl-button--raised mdl-textfield mdl-js-textfield mdl-js-ripple-effect mdl-button--accent otp-btn text-uppercase">
-                Send Otp
-            </a>
+            <!-- email and password dialog box -->
+            <div class="mdl-dialog__content ps-5 pt-2" id="emailContentBox" style="display: none;">
+                <!-- Icon badge on icon -->
+                <div class="material-icons mdl-badge mdl-badge--overlap"
+                    style="position: absolute;right: 8%;cursor: pointer;z-index: 999;" id="emailContentBoxCloseBtn">
+                    <i class="fas fa-times-circle fa-xs"></i>
+                </div>
+                <form action="#">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" id="emailInput">
+                        <label class="mdl-textfield__label" for="sample3">Email</label>
+                        <div class="text-danger fs-6 position-absolute" id="emailErr"></div>
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="password" id="passwordInput">
+                        <label class="mdl-textfield__label" for="sample3">Password</label>
+                        <div class="text-danger fs-6 position-absolute" id="passwordErr"></div>
+                    </div>
+                    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mt-2" for="checkbox-2">
+                        <input type="checkbox" id="checkbox-2" class="mdl-checkbox__input" onclick="togglePassword()">
+                        <span class="mdl-checkbox__label">Show password</span>
+                    </label>
+                </form>
+                <a id="formSignInBtn"
+                    class="mdl-button mdl-js-button mdl-button--raised mdl-textfield mdl-js-textfield mdl-js-ripple-effect mdl-button--accent sign-in-btn text-uppercase">
+                    Sign-in
+                </a>
+            </div>
         </dialog>
     </main>
     <!-- BOOTSTRAP SCRIPT -->
@@ -92,18 +113,19 @@
     <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-analytics.js"></script>
+    <!-- <script>
+        // initialize the firebase app (testing)
+        const firebaseConfig = {
+            apiKey: "AIzaSyCPIvgDaRe09zqtNC5e-c3mHQVsjXwG_24",
+            authDomain: "login-authentication-dfaaa.firebaseapp.com",
+            projectId: "login-authentication-dfaaa",
+            storageBucket: "login-authentication-dfaaa.appspot.com",
+            messagingSenderId: "449318353551",
+            appId: "1:449318353551:web:bb0f7422cefe7407ec0efa",
+            measurementId: "G-20HPQDZ6SL"
+        };
+    </script> -->
     <script>
-        //initialize the firebase app (testing)
-        // const firebaseConfig = {
-        //     apiKey: "AIzaSyCPIvgDaRe09zqtNC5e-c3mHQVsjXwG_24",
-        //     authDomain: "login-authentication-dfaaa.firebaseapp.com",
-        //     projectId: "login-authentication-dfaaa",
-        //     storageBucket: "login-authentication-dfaaa.appspot.com",
-        //     messagingSenderId: "449318353551",
-        //     appId: "1:449318353551:web:bb0f7422cefe7407ec0efa",
-        //     measurementId: "G-20HPQDZ6SL"
-        // };
-
         //initialize the firebase app (real-time)
         const firebaseConfig = {
             apiKey: "AIzaSyCbaWXYRFO-uHlB4AMACf0gDnZ8StPJofY",
@@ -122,9 +144,7 @@
         var auth = firebase.auth();
         var db = firebase.firestore();
     </script>
-
     <!-- CUSTOM JS SCRIPT -->
-    <!-- <script src="auth.js"></script> -->
     <script src="app.js"></script>
 </body>
 

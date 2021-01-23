@@ -1,5 +1,8 @@
 html,
 body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
   height: 100%;
 }
 *:focus {
@@ -7,11 +10,12 @@ body {
 }
 body {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: #e3e3e3;
+  /* background-color: #e3e3e3; */
 }
 
 .form {
@@ -20,6 +24,14 @@ body {
   padding: 15px;
   margin: auto;
   background-color: #ffffff;
+}
+
+.login-brand-title {
+  position: absolute;
+  top: 10%;
+  left: 0;
+  right: 0;
+  margin: auto;
 }
 .dialog-title {
   padding: 0;
@@ -32,14 +44,34 @@ body {
   background: #ffffff !important;
   color: #000000 !important;
 }
-.otp-btn {
-  width: 50%;
+.code-btn,
+.request-btn {
+  width: 75%;
   position: absolute;
+  top: 85%;
   left: 0;
   right: 0;
   margin: auto;
   padding: 0 2rem !important;
   border-radius: 25px !important;
+}
+.request-btn {
+  width: 75%;
+  top: 50% !important;
+}
+.otp-btn,
+.sign-in-btn {
+  width: 50%;
+  position: absolute;
+  top: 85%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding: 0 2rem !important;
+  border-radius: 25px !important;
+}
+.sign-in-btn {
+  top: 75%;
 }
 .social-link {
   background: #e2e2e2;
@@ -53,7 +85,7 @@ body {
 }
 .mdl-dialog {
   border-radius: 5px;
-  height: 325px;
+  height: 475px;
 }
 .mdl-button--fab {
   min-width: 40px;
